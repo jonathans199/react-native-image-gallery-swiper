@@ -1,31 +1,38 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-image-gallery-swiper';
+import { Alert } from 'react-native';
+import { ImageGallerySwiper } from 'react-native-image-gallery-swiper';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const images = [
+    { id: 1, url: 'https://source.unsplash.com/random?sig=1', name: 'test 1' },
+    { id: 2, url: 'https://source.unsplash.com/random?sig=2', name: 'test 2' },
+    { id: 3, url: 'https://source.unsplash.com/random?sig=3', name: 'test 3' },
+    { id: 4, url: 'https://source.unsplash.com/random?sig=4', name: 'test 4' },
+    { id: 5, url: 'https://source.unsplash.com/random?sig=5', name: 'test 5' },
+  ];
 
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+  const swipeUp = (item: string) => {
+    Alert.alert('Swiping up!', 'Congrats!', [
+      {
+        text: 'OK',
+        onPress: () => console.log('OK Pressed', item),
+      },
+    ]);
+  };
+
+  const swipeDown = (item: string) => {
+    console.log('swiping bottom ->', item);
+  };
 
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <ImageGallerySwiper
+      images={images}
+      swipeUp={swipeUp}
+      swipeDown={swipeDown}
+      displayName
+      textStyles={{ fontSize: 20, color: 'white', backgroundColor: 'green' }}
+      imageStyles={{ height: 300 }}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});
