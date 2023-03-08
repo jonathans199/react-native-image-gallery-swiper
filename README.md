@@ -5,9 +5,7 @@ A simple React Native component to render image gallery with common gestures lik
 <br/>
 Supporting EXPO & vanilla React Native for both iOS and Android.
 
-![react native image gallery swiper](https://www.jonathansanchez.dev/img/image-gallery-swiper.gif)
-
-
+![react native image gallery swiper](./react-native-image-gallery-swiper-demo.gif)
 
 Built and similar to `react-native-gallery-swiper`.
 
