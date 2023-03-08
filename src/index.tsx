@@ -1,18 +1,29 @@
 import React from 'react';
-import { StyleSheet, Image, ScrollView, Dimensions, Text } from 'react-native';
+import {
+  StyleSheet,
+  Image,
+  ImageStyle,
+  ScrollView,
+  Dimensions,
+  Text,
+  TextStyle,
+} from 'react-native';
 const screenWidth = Math.round(Dimensions.get('window').width);
 const screenHeight = Math.round(Dimensions.get('window').height);
 
-interface TImages {
-  images: [object];
+export interface TImages {
+  id: number | string;
+  name?: string;
+  url?: string;
+  imageUrl?: string;
 }
-interface TProps {
-  images: TImages;
+export interface TProps {
+  images: TImages[];
   swipeDown: Function;
   swipeUp: Function;
   displayName?: boolean;
-  textStyles?: any;
-  imageStyles?: any;
+  textStyles?: TextStyle;
+  imageStyles?: ImageStyle;
 }
 
 export const ImageGallerySwiper = (props: TProps) => {
@@ -36,7 +47,7 @@ export const ImageGallerySwiper = (props: TProps) => {
             onScrollEndDrag={(e) => handleVerticalSwipe(e, item)}
           >
             <Image
-              source={{ uri: item.url }}
+              source={{ uri: item.url || item.imageUrl }}
               style={{ ...styles.imageStyles, ...imageStyles }}
             />
             {displayName && (
