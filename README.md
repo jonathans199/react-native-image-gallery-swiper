@@ -1,6 +1,10 @@
 # react-native-image-gallery-swiper
 
-A simple React Native component to render image gallery with common gestures like swiping up / down or swiping left / right to navigate to next image. Supporting EXPO & vanilla React Native for both iOS and Android.
+A simple React Native component to render image gallery with common gestures like swiping up / down or swiping left / right to navigate to next image. <br> Supporting EXPO & vanilla React Native for both iOS and Android.
+
+<h1 align="center">
+    <img src="https://www.jonathansanchez.dev/img/image-gallery-swiper.gif" alt="react-native-image-gallery-swiper" />
+</h1>
 
 Built and similar to `react-native-gallery-swiper`.
 
@@ -38,9 +42,6 @@ export default function App() {
 }
 ```
 
-## :nut_and_bolt : API
-
-`<ImageGallerySwiper />` component accepts the following props...
 
 <br/>
 

@@ -19,8 +19,8 @@ export interface TImages {
 }
 export interface TProps {
   images: TImages[];
-  swipeDown: Function;
-  swipeUp: Function;
+  swipeDown?: Function;
+  swipeUp?: Function;
   displayName?: boolean;
   textStyles?: TextStyle;
   imageStyles?: ImageStyle;
@@ -29,11 +29,8 @@ export interface TProps {
 export const ImageGallerySwiper = (props: TProps) => {
   const handleVerticalSwipe = (e: any, item: any) => {
     const { swipeDown, swipeUp } = props;
-    if (e.nativeEvent.contentOffset.y < 0) {
-      swipeDown(item);
-    } else {
-      swipeUp(item);
-    }
+    if (swipeDown && e.nativeEvent.contentOffset.y < 0) swipeDown(item);
+    if (swipeUp && e.nativeEvent.contentOffset.y > 0) swipeUp(item);
   };
 
   const { images, displayName, textStyles, imageStyles } = props;
