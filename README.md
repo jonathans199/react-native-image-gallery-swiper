@@ -1,6 +1,6 @@
 # react-native-image-gallery-swiper
 
-A simple React Native component to render image gallery with common gestures like swiping up / down or swiping left / right to navigate to next image.
+A simple React Native component to render image gallery with common gestures like swiping up/down or swiping left/right to navigate to next image, as well as thumbnails for easy image navigation. 
 
 <br/>
 Supporting EXPO & vanilla React Native for both iOS and Android.
@@ -78,10 +78,10 @@ export default function App() {
 | `swipeUp`                 | Function to pass for when swiping up an image                                                                                                                                                       | `Function`                 | Optional |
 | `swipeDown`               | Function to pass for when swiping down an image                                                                                                                                                     | `Function`                 | Optional |
 | `displayName`             | Text component with name of image to show on top of image                                                                                                                                           | `Boolean`                  | Optional |
-| `textStyle`               | Styling the Display Name. <br/> Example: `textStyles={{ fontSize: 20, color: 'white', backgroundColor: 'green' }}`                                                                                  | `object` type `TextStyle`  | Optional |
+| `textStyle`               | Styling the Display Name. <br/> Example: `textStyles={{ fontSize: 20, color: 'white' }}`                                                                                  | `object` type `TextStyle`  | Optional |
 | `imageStyles`             | Styling the images within the array. <br/> Example: `imageStyles={{ height: 300 }}`                                                                                                                 | `object` type `ImageStyle` | Optional |
 | `showThumbs`              | To show thumbnails under the main image`                                                                                                                                                            | `boolean`                  | Optional |                                                                                                                                                                                     |
-| `thumbStyles`             | Styling the thumbs within the array. <br/> Example: `thumbStyles={{ borderRadius: 10 }}`                                                                                                            |
+| `thumbStyles`             | Styling the thumbs within the array. <br/> Example: `thumbStyles={{ borderRadius: 10 }}`                                                                                                             | `object` type `ImageStyle` | Optional |
 
 <br/>
 <br/>
