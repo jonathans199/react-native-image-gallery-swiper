@@ -6,6 +6,7 @@ A simple React Native component to render image gallery with common gestures lik
 Supporting EXPO & vanilla React Native for both iOS and Android.
 
 ![react native image gallery swiper](./react-native-image-gallery-swiper-demo.gif)
+![react native image gallery swiper](./react-native-image-gallery-swiper-demo2.gif)
 
 Built and similar to `react-native-gallery-swiper`.
 
@@ -56,8 +57,12 @@ export default function App() {
   return (
     <ImageGallerySwiper
       images={images}
-      swipeUp={() => console.log('up')}
-      swipeDown={() => console.log('down')}
+      imageStyles={{ height: 300 }} // optional
+      swipeUp={() => console.log('up')} // optional
+      swipeDown={() => console.log('down')} // optional
+      showThumbs // optional
+      displayName // optional
+      textStyles={{ fontSize: 20, color: 'white', backgroundColor: 'green' }} // optional
     />
   );
 }
@@ -67,14 +72,16 @@ export default function App() {
 
 # :books: Props
 
-| Props         | Description                                                                                                                                                                                         | Type                       | Default  |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------- |
-| `images`      | An array of objects. With `id`, `url` or `imageUrl` is a required field. <br/> Example. `[ { uri: "https://source.unsplash.com/random?sig=1"}, { uri: "https://source.unsplash.com/random?sig=2"}]` | `Array`                    | Required |
-| `swipeUp`     | Function to pass for when swiping up an image                                                                                                                                                       | `Function`                 | Optional |
-| `swipDown`    | Function to pass for when swiping down an image                                                                                                                                                     | `Function`                 | Optional |
-| `displayName` | Text component with name of image to show on top of image                                                                                                                                           | `Boolean`                  | Optional |
-| `textStyle`   | Styling the Display Name. <br/> Example: `textStyles={{ fontSize: 20, color: 'white', backgroundColor: 'green' }}`                                                                                  | `object` type `TextStyle`  | Optional |
-| `imageStyles` | Styling the images within the array. <br/> Example: `imageStyles={{ height: 300 }}`                                                                                                                 | `object` type `ImageStyle` | Optional |
+| Props                     | Description                                                                                                                                                                                         | Type                       | Default  |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------- |
+| `images`                  | An array of objects. With `id`, `url` or `imageUrl` is a required field. <br/> Example. `[ { uri: "https://source.unsplash.com/random?sig=1"}, { uri: "https://source.unsplash.com/random?sig=2"}]` | `Array`                    | Required |
+| `swipeUp`                 | Function to pass for when swiping up an image                                                                                                                                                       | `Function`                 | Optional |
+| `swipeDown`               | Function to pass for when swiping down an image                                                                                                                                                     | `Function`                 | Optional |
+| `displayName`             | Text component with name of image to show on top of image                                                                                                                                           | `Boolean`                  | Optional |
+| `textStyle`               | Styling the Display Name. <br/> Example: `textStyles={{ fontSize: 20, color: 'white', backgroundColor: 'green' }}`                                                                                  | `object` type `TextStyle`  | Optional |
+| `imageStyles`             | Styling the images within the array. <br/> Example: `imageStyles={{ height: 300 }}`                                                                                                                 | `object` type `ImageStyle` | Optional |
+| `showThumbs`              | To show thumbnails under the main image`                                                                                                                                                            | `boolean`                  | Optional |                                                                                                                                                                                     |
+| `thumbStyles`             | Styling the thumbs within the array. <br/> Example: `thumbStyles={{ borderRadius: 10 }}`                                                                                                            |
 
 <br/>
 <br/>
