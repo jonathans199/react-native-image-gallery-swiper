@@ -27,6 +27,7 @@ export interface TProps {
   imageStyles?: ImageStyle;
   showThumbs?: boolean;
   thumbStyles?: ImageStyle;
+  setActiveImage?: Function;
 }
 
 export const ImageGallerySwiper = ({
@@ -38,9 +39,11 @@ export const ImageGallerySwiper = ({
   swipeUp,
   showThumbs,
   thumbStyles,
+  setActiveImage,
 }: TProps) => {
   const horizontalScroll = React.useRef<any>();
   const handleVerticalSwipe = (e: any, item: TImages) => {
+    setActiveImage && setActiveImage(item);
     if (swipeDown && e.nativeEvent.contentOffset.y < 0) swipeDown(item);
     if (swipeUp && e.nativeEvent.contentOffset.y > 0) swipeUp(item);
   };
