@@ -23,6 +23,7 @@ $ yarn add react-native-image-gallery-swiper
 # Usage
 
 ```js
+import * as React from 'react'
 import { ImageGallerySwiper } from 'react-native-image-gallery-swiper';
 
 const images = [
@@ -54,15 +55,22 @@ const images = [
 ];
 
 export default function App() {
+  const [activeImage, getActiveImage] = React.UseState() 
+
+  console.log('activeImage ->', activeImage)
+
   return (
     <ImageGallerySwiper
-      images={images}
-      imageStyles={{ height: 300 }} // optional
-      swipeUp={() => console.log('up')} // optional
-      swipeDown={() => console.log('down')} // optional
-      showThumbs // optional
-      displayName // optional
-      textStyles={{ fontSize: 20, color: 'white', backgroundColor: 'green' }} // optional
+      images={images} // required
+
+      // the rest of props are optional 👇
+      imageStyles={{ height: 300 }}
+      swipeUp={() => console.log('up')}
+      swipeDown={() => console.log('down')}
+      showThumbs
+      displayName
+      textStyles={{ fontSize: 20, color: 'white', backgroundColor: 'green' }}
+      setActiveImage={getActiveImage}
     />
   );
 }
@@ -82,6 +90,7 @@ export default function App() {
 | `imageStyles`             | Styling the images within the array. <br/> Example: `imageStyles={{ height: 300 }}`                                                                                                                 | `object` type `ImageStyle` | Optional |
 | `showThumbs`              | To show thumbnails under the main image`                                                                                                                                                            | `boolean`                  | Optional |                                                                                                                                                                                     |
 | `thumbStyles`             | Styling the thumbs within the array. <br/> Example: `thumbStyles={{ borderRadius: 10 }}`                                                                                                             | `object` type `ImageStyle` | Optional |
+`setActiveImage`             | To get active image sent back to the parent component <br/> Example: `setActiveImage={getActiveImage}`                                                                                                             | `function` type | Optional |
 
 <br/>
 <br/>
