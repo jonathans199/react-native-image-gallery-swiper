@@ -23,54 +23,53 @@ $ yarn add react-native-image-gallery-swiper
 # Usage
 
 ```js
-import * as React from 'react'
+import * as React from 'react';
+
 import { ImageGallerySwiper } from 'react-native-image-gallery-swiper';
 
-const images = [
-  {
-    id: 1,
-    url: 'https://source.unsplash.com/random?sig=1',
-    name: 'Cool Pic 1',
-  },
-  {
-    id: 2,
-    url: 'https://source.unsplash.com/random?sig=2',
-    name: 'Cool Pic 2',
-  },
-  {
-    id: 3,
-    url: 'https://source.unsplash.com/random?sig=3',
-    name: 'Cool Pic 3',
-  },
-  {
-    id: 4,
-    url: 'https://source.unsplash.com/random?sig=4',
-    name: 'Cool Pic 4',
-  },
-  {
-    id: 5,
-    url: 'https://source.unsplash.com/random?sig=5',
-    name: 'Cool Pic 5',
-  },
-];
-
 export default function App() {
-  const [activeImage, getActiveImage] = React.UseState() 
+  const [swipedImage, setSwipedImage] = React.useState();
+  const images = [
+    {
+      id: 1,
+      url: 'https://source.unsplash.com/random?sig=1',
+      name: 'cool pic 1',
+    },
+    {
+      id: 2,
+      url: 'https://source.unsplash.com/random?sig=2',
+      name: 'cool pic 2',
+    },
+    {
+      id: 3,
+      url: 'https://source.unsplash.com/random?sig=3',
+      name: 'cool pic 3',
+    },
+    {
+      id: 4,
+      url: 'https://source.unsplash.com/random?sig=4',
+      name: 'cool pic 4',
+    },
+    {
+      id: 5,
+      url: 'https://source.unsplash.com/random?sig=5',
+      name: 'cool pic 5',
+    },
+  ];
 
-  console.log('activeImage ->', activeImage)
+  console.log('swipedImage ->', swipedImage);
 
   return (
     <ImageGallerySwiper
-      images={images} // required
-
-      // the rest of props are optional 👇
-      imageStyles={{ height: 300 }}
+      images={images}
       swipeUp={() => console.log('up')}
       swipeDown={() => console.log('down')}
-      showThumbs
-      displayName
       textStyles={{ fontSize: 20, color: 'white', backgroundColor: 'green' }}
-      setActiveImage={getActiveImage}
+      imageStyles={{ height: 300 }}
+      displayName
+      showThumbs
+      getSwipedImage={setSwipedImage}
+      activeImage={2}
     />
   );
 }
@@ -90,7 +89,8 @@ export default function App() {
 | `imageStyles`             | Styling the images within the array. <br/> Example: `imageStyles={{ height: 300 }}`                                                                                                                 | `object` type `ImageStyle` | Optional |
 | `showThumbs`              | To show thumbnails under the main image`                                                                                                                                                            | `boolean`                  | Optional |                                                                                                                                                                                     |
 | `thumbStyles`             | Styling the thumbs within the array. <br/> Example: `thumbStyles={{ borderRadius: 10 }}`                                                                                                             | `object` type `ImageStyle` | Optional |
-`setActiveImage`             | To get active image sent back to the parent component <br/> Example: `setActiveImage={getActiveImage}`                                                                                                             | `function` type | Optional |
+`getActiveImage`             | To get active image sent back to the parent component <br/> Example: `setActiveImage={getActiveImage}`                                                                                                             | `function` type | Optional |
+`activeImage`             | To set active image index <br/> Example: `activeImage={4}`                                                                                                             | `number` type | Optional |
 
 <br/>
 <br/>
