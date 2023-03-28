@@ -24,20 +24,17 @@ export const ImageGallerySwiper = ({
     if (swipeUp && e.nativeEvent.contentOffset.y > 0) swipeUp(item);
   };
 
-  React.useEffect(() => {
-    activeImage &&
-      horizontalScroll.current.scrollTo({
-        x: screen.width * activeImage,
-      });
-  }, [activeImage]);
-
   return (
     <>
       <ScrollView
-        horizontal={true}
+        horizontal
         pagingEnabled={true}
         showsHorizontalScrollIndicator={false}
         ref={horizontalScroll}
+        contentOffset={{
+          x: activeImage ? screen.width * activeImage : 0,
+          y: 0,
+        }}
       >
         {images?.map((item: TImages, index: number) => {
           return (

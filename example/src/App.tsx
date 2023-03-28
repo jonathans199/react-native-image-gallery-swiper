@@ -43,8 +43,8 @@ export default function App() {
       showThumbs
       getSwipedImage={setSwipedImage}
       activeImage={2}
-      textStyles={{ fontSize: 20, color: 'white', backgroundColor: 'green' }}
-      imageStyles={{ height: 300 }}
+      // textStyles={{ fontSize: 20, color: 'white', backgroundColor: 'green' }}
+      // imageStyles={{ height: 300 }}
     />
   );
 }
