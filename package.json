@@ -1,6 +1,6 @@
 {
   "name": "react-native-image-gallery-swiper",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A simple React Native component to render image gallery with common gestures like swiping up/down or swiping left/right to navigate to next image, as well as thumbnails for easy image navigation. ",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
