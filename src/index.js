@@ -1,14 +1,7 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  Image,
-  ScrollView,
-  Dimensions,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
-const screenWidth = Math.round(Dimensions.get('window').width);
-const screenHeight = Math.round(Dimensions.get('window').height);
+import { Image, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { screen } from './utils';
+import { styles } from './styles';
 export const ImageGallerySwiper = ({
   images,
   displayName,
@@ -18,10 +11,12 @@ export const ImageGallerySwiper = ({
   swipeUp,
   showThumbs,
   thumbStyles,
+  getSwipedImage,
+  activeImage,
 }) => {
   const horizontalScroll = React.useRef();
   const handleVerticalSwipe = (e, item) => {
-    console.log('e -> ', e);
+    getSwipedImage && getSwipedImage(item);
     if (swipeDown && e.nativeEvent.contentOffset.y < 0) swipeDown(item);
     if (swipeUp && e.nativeEvent.contentOffset.y > 0) swipeUp(item);
   };
@@ -35,19 +30,24 @@ export const ImageGallerySwiper = ({
         pagingEnabled: true,
         showsHorizontalScrollIndicator: false,
         ref: horizontalScroll,
+        contentOffset: {
+          x: activeImage ? screen.width * activeImage : 0,
+          y: 0,
+        },
       },
       images?.map((item, index) => {
         return React.createElement(
           ScrollView,
-          {
-            key: index,
-            onScrollEndDrag: (e) => handleVerticalSwipe(e, item),
-            // get current item
-            onScrollBeginDrag: (item) => console.log('item ->', item),
-          },
+          { key: index, onScrollEndDrag: (e) => handleVerticalSwipe(e, item) },
           React.createElement(Image, {
             source: { uri: item.url || item.imageUrl },
-            style: { ...styles.imageStyles, ...imageStyles },
+            style: showThumbs
+              ? {
+                  ...styles.imageStyles,
+                  height: screen.height - 120,
+                  ...imageStyles,
+                }
+              : { ...styles.imageStyles, ...imageStyles },
           }),
           displayName &&
             React.createElement(
@@ -76,7 +76,7 @@ export const ImageGallerySwiper = ({
             {
               key: image.id,
               onPress: () =>
-                horizontalScroll.current.scrollTo({ x: screenWidth * i }),
+                horizontalScroll.current.scrollTo({ x: screen.width * i }),
             },
             React.createElement(Image, {
               style: { ...styles.thumb, ...thumbStyles },
@@ -87,27 +87,3 @@ export const ImageGallerySwiper = ({
       )
   );
 };
-const styles = StyleSheet.create({
-  imageStyles: {
-    width: screenWidth,
-    height: screenHeight,
-  },
-  imageText: {
-    textAlign: 'center',
-    bottom: screenHeight - 750,
-    fontSize: 20,
-    marginHorizontal: 50,
-    paddingVertical: 10,
-    color: '#fefefe',
-    backgroundColor: 'rgba(52, 52, 52, 0.8)',
-  },
-  thumb: {
-    borderRadius: 5,
-    height: screenWidth / 5,
-    width: screenWidth / 5,
-    marginTop: 10,
-    marginRight: 0,
-    marginBottom: 30,
-    marginLeft: 10,
-  },
-});

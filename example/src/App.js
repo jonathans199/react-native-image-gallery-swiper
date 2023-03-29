@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Alert } from 'react-native';
 import { ImageGallerySwiper } from 'react-native-image-gallery-swiper';
 export default function App() {
+  const [swipedImage, setSwipedImage] = React.useState();
   const images = [
     {
       id: 1,
@@ -29,27 +29,14 @@ export default function App() {
       name: 'cool pic 5',
     },
   ];
-  const swipeUp = (item) => {
-    Alert.alert('Swiping up!', 'Congrats!', [
-      {
-        text: 'OK',
-        onPress: () => console.log('OK Pressed', item),
-      },
-    ]);
-  };
-  const swipeDown = (item) => {
-    Alert.alert('Swiping down!', 'Congrats!', [
-      {
-        text: 'OK',
-        onPress: () => console.log('OK Pressed', item),
-      },
-    ]);
-  };
+  console.log('swipedImage ->', swipedImage);
   return React.createElement(ImageGallerySwiper, {
     images: images,
-    swipeUp: swipeUp,
-    swipeDown: swipeDown,
+    swipeUp: () => console.log('up'),
+    swipeDown: () => console.log('down'),
     displayName: true,
     showThumbs: true,
+    getSwipedImage: setSwipedImage,
+    activeImage: 2,
   });
 }
