@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { View, Text } from 'react-native';
 import { ImageGallerySwiper } from 'react-native-image-gallery-swiper';
 export default function App() {
   const [swipedImage, setSwipedImage] = React.useState();
@@ -30,13 +31,44 @@ export default function App() {
     },
   ];
   console.log('swipedImage ->', swipedImage);
-  return React.createElement(ImageGallerySwiper, {
-    images: images,
-    swipeUp: () => console.log('up'),
-    swipeDown: () => console.log('down'),
-    displayName: true,
-    showThumbs: true,
-    getSwipedImage: setSwipedImage,
-    activeImage: 2,
-  });
+  return React.createElement(
+    React.Fragment,
+    null,
+    React.createElement(
+      ImageGallerySwiper,
+      {
+        images: images,
+        swipeUp: () => console.log('up'),
+        swipeDown: () => console.log('down'),
+        displayName: true,
+        showThumbs: true,
+        getSwipedImage: setSwipedImage,
+        activeImage: 2,
+        arrows: {
+          arrowRight: require('../assets/SkipRight.png'),
+          arrowLeft: require('../assets/SkipLeft.png'),
+          arrowStyles: {
+            // backgroundColor: 'gray',
+            height: 30,
+            width: 30,
+            borderRadius: 10,
+          },
+          containerStyles: {
+            width: '100%',
+            position: 'absolute',
+            display: 'flex',
+            flexDirection: 'row',
+            marginTop: 300,
+            justifyContent: 'space-between',
+            paddingHorizontal: 20,
+          },
+        },
+      },
+      React.createElement(
+        View,
+        null,
+        React.createElement(Text, null, ' Children will show here ')
+      )
+    )
+  );
 }
