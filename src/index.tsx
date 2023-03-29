@@ -17,6 +17,7 @@ export const ImageGallerySwiper = ({
   getSwipedImage,
   activeImage,
   arrows,
+  children,
 }: TProps) => {
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const horizontalScroll = React.useRef<any>();
@@ -130,6 +131,7 @@ export const ImageGallerySwiper = ({
           ))}
         </ScrollView>
       )}
+      {children}
     </>
   );
 };

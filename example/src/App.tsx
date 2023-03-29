@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { View, Text } from 'react-native';
 
 import { ImageGallerySwiper } from 'react-native-image-gallery-swiper';
 
@@ -66,7 +67,11 @@ export default function App() {
         // setHandlePressRight={handlePressRight}
         // textStyles={{ fontSize: 20, color: 'white', backgroundColor: 'green' }}
         // imageStyles={{ height: 300 }}
-      />
+      >
+        <View>
+          <Text> Children will show here </Text>
+        </View>
+      </ImageGallerySwiper>
     </>
   );
 }

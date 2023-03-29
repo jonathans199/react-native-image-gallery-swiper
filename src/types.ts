@@ -26,4 +26,5 @@ export interface TProps {
   getSwipedImage?: Function;
   activeImage?: number;
   arrows?: TArrows;
+  children?: React.ReactChild;
 }
