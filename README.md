@@ -91,6 +91,7 @@ export default function App() {
 | `thumbStyles`             | Styling the thumbs within the array. <br/> Example: `thumbStyles={{ borderRadius: 10 }}`                                                                                                             | `object` type `ImageStyle` | Optional |
 `getActiveImage`             | To get active image sent back to the parent component <br/> Example: `setActiveImage={getActiveImage}`                                                                                                             | `function` type | Optional |
 `activeImage`             | To set active image index <br/> Example: `activeImage={4}`                                                                                                             | `number` type | Optional |
+`arrows`             | To set arrow images and styles <br/> Example: ` arrows={{arrowRight: require('../assets/SkipRight.png'), arrowLeft: require('../assets/SkipLeft.png'), arrowStyles: {}`                                                                                                             | `object` type | Optional |
 
 <br/>
 <br/>

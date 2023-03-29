@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 import { screen } from './utils';
 import type { TImages, TProps } from './types';
@@ -16,12 +16,33 @@ export const ImageGallerySwiper = ({
   thumbStyles,
   getSwipedImage,
   activeImage,
+  arrows,
 }: TProps) => {
+  const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const horizontalScroll = React.useRef<any>();
   const handleVerticalSwipe = (e: any, item: TImages) => {
     getSwipedImage && getSwipedImage(item);
     if (swipeDown && e.nativeEvent.contentOffset.y < 0) swipeDown(item);
     if (swipeUp && e.nativeEvent.contentOffset.y > 0) swipeUp(item);
+  };
+
+  const handlePressLeft = () => {
+    horizontalScroll.current.scrollTo({
+      x: screen.width * (selectedIndex - 1),
+    });
+  };
+
+  const handlePressRight = () => {
+    horizontalScroll.current.scrollTo({
+      x: screen.width * (selectedIndex + 1),
+    });
+  };
+
+  const handleHorizontalSwipe = (e: any) => {
+    const currentImageIndex = Math.round(
+      e.nativeEvent.contentOffset.x / screen.width
+    );
+    setSelectedIndex(currentImageIndex);
   };
 
   return (
@@ -31,6 +52,8 @@ export const ImageGallerySwiper = ({
         pagingEnabled={true}
         showsHorizontalScrollIndicator={false}
         ref={horizontalScroll}
+        onScroll={handleHorizontalSwipe}
+        scrollEventThrottle={200}
         contentOffset={{
           x: activeImage ? screen.width * activeImage : 0,
           y: 0,
@@ -39,6 +62,7 @@ export const ImageGallerySwiper = ({
         {images?.map((item: TImages, index: number) => {
           return (
             <ScrollView
+              scrollEventThrottle={200}
               key={index}
               onScrollEndDrag={(e) => handleVerticalSwipe(e, item)}
             >
@@ -63,11 +87,29 @@ export const ImageGallerySwiper = ({
           );
         })}
       </ScrollView>
+
+      {arrows && (
+        <View style={{ ...arrows.containerStyles }}>
+          <TouchableOpacity onPress={handlePressLeft}>
+            <Image
+              source={arrows.arrowLeft}
+              style={{ ...arrows.arrowStyles }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handlePressRight}>
+            <Image
+              source={arrows.arrowRight}
+              style={{ ...arrows.arrowStyles }}
+            />
+          </TouchableOpacity>
+        </View>
+      )}
+
       {showThumbs && (
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          scrollEventThrottle={200}
+          // scrollEventThrottle={200}
           decelerationRate="fast"
         >
           <TouchableOpacity
