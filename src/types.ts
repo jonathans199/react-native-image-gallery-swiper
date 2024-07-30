@@ -23,6 +23,7 @@ export interface TProps {
   showThumbs?: boolean;
   showArrows?: boolean;
   thumbStyles?: ImageStyle;
+  thumbContainerStyles?: ImageStyle;
   getSwipedImage?: Function;
   activeImage?: number;
   arrows?: TArrows;

@@ -14,6 +14,7 @@ export const ImageGallerySwiper = ({
   swipeUp,
   showThumbs,
   thumbStyles,
+  thumbContainerStyles,
   getSwipedImage,
   activeImage,
   arrows,
@@ -112,6 +113,7 @@ export const ImageGallerySwiper = ({
           showsHorizontalScrollIndicator={false}
           // scrollEventThrottle={200}
           decelerationRate="fast"
+          style={{ ...thumbContainerStyles }}
         >
           <TouchableOpacity
             onPress={() => horizontalScroll.current.scrollTo({ x: 0 })}
